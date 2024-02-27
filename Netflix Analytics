@@ -80,22 +80,24 @@ ON netflix_titles_info.show_id = netflix_people.show_id
  FROM "netflix_titles_info"
  GROUP BY "type";
  
- -- 3. List all the movies and tv shows in alphabetical order.
+ -- 3. Who was the Director for the movie The Starling?
  SELECT "director", "title"
  FROM "netflix_titles_info"
  LEFT JOIN "netflix_people"
  ON netflix_people.show_id = netflix_titles_info.show_id
  WHERE "title" = 'The Starling';
  
- -- 4. Who was the Director for the movie The Starling?
+ -- 4. What is the oldest movie in the database and what year was it made? 
  SELECT "type", "title", "release_year"
  FROM "netflix_titles_info"
  WHERE "type" = 'Movie'
  ORDER BY "release_year" desc;
  
- -- 5. What is the oldest movie in the database and what year was it made? 
+ -- 5. List all the movies and tv shows in alphabetical order. 
  SELECT DISTINCT a.title as Movie, b.title as TV
  FROM "netflix_titles_info" a
  FULL OUTER JOIN "netflix_titles_info" b
  ON a.show_id=b.show_id
- WHERE a.type='Movie' AND b.type='TV Show';
+ WHERE a.type='Movie' 
+ AND b.type='TV Show';
+ 
